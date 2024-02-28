@@ -1,0 +1,28 @@
+Different way of creating bean:
+1) @Service
+2) @Component
+3) @Repository
+4) @RestController / @Controller
+5) @Bean
+---------------------------------
+
+****Bean****
+When we create bean using @Bean, we don't need to declare any Stereotype annotation.
+We just need to inject the dependency using constructor/setter/field.
+
+****RestTemplate-Configuration*****
+
+Created new RestTemplate bean outside of spring managed bean.
+This RestTemplate bean handle below feature:
+    1) Connection timeout
+    2) Disable cookies management
+    3) added encoding to URI variables
+-->
+    Rest API call:
+    * Followed best practice to call Rest API using RestTemplate.
+    * Added headers as a part of request url where we can pass JWT token/encoded basic auth
+      userId&Pass
+    * Handle restTemplate Error as well to provide proper response if error occures.
+
+
+

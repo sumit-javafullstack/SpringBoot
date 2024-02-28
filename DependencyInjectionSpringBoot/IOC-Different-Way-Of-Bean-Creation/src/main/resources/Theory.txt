@@ -1,0 +1,39 @@
+---***Employee***---
+Explain about Constructor injection.
+
+---***Student***---
+Explain about setter Injection
+
+---***Controller Class***---
+Explain about field injection
+
+----------------------------------------
+
+Note : We can use Constructor/Setter Injection in Controller class as well.
+       reason :
+        1) @RestController
+        2) Controller is class not interface, Spring provides IOC only for classes.
+           refer to below information.
+
+***Interface Injection***
+1) Interface injection is not directly supported by the Spring framework.
+2) It involves implementing an interface that defines setter methods for the dependencies.
+3) The implementing class is responsible for providing the necessary
+   dependency injection logic (setter/constructor/field).
+4) While it offers flexibility, it can introduce complexity and increase coupling.
+   Starting from Spring 4.3, constructor injection is recommended for dependency injection in Spring.
+   It promotes immutability and explicit declaration of dependencies,
+   making the code more robust and maintainable. Although setter and field injections are
+   still supported, they are considered less preferable.
+
+5) In a Spring Boot application, we can enable dependency injection by using appropriate annotations such
+   as @Autowired and @Service to mark the classes where dependencies need to be injected.
+   Additionally, we need to configure the application with
+   annotations like @ComponentScan or @SpringBootApplication to allow Spring Boot
+   to scan and discover the beans.
+
+6) Spring Boot’s auto-configuration and component scanning capabilities simplify the dependency
+   injection process by reducing the need for explicit configuration in most cases.
+
+
+

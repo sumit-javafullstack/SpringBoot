@@ -1,0 +1,11 @@
+spring:
+  firstdatasouce:
+    url: temp
+    username: aa
+    password: aa
+    driverClassName: oracle
+  seconddatasource:
+    url: temp1
+    username: zz
+    password: zz
+    driverClassName: db2

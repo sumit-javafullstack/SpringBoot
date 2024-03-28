@@ -1,2 +1,10 @@
-package com.practice.SpringBootLomBokJacksonProfilePropertiesFileAccess.properties;public class Education {
+package com.practice.SpringBootLomBokJacksonProfilePropertiesFileAccess.properties;
+
+import lombok.Data;
+
+@Data
+public class Education {
+    private String school;
+    private String  college;
+    private String  highest_degree;
 }

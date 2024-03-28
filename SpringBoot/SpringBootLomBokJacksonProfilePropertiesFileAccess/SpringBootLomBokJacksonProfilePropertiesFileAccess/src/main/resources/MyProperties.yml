@@ -1,0 +1,15 @@
+spring:
+    application:
+        name: SpringBootLomBokJacksonProfilePropertiesFileAccess
+
+app:
+    client:
+        url:
+        commision-path:
+        timeout: 800
+server:
+    port: 8080
+employee:
+    tempList: [[],[],[]]
+    tempmap: {}
+

@@ -1,0 +1,33 @@
+spring:
+    application:
+        name: SpringBootLomBokJacksonProfilePropertiesFileAccess
+server:
+    port: 8080
+app:
+  employee:
+    info:
+      name: Sumit Mandal
+      age: 30
+      hobbies:
+        - cricket
+        - football
+        - swiming
+      education:
+        school: Shree Jain Vidyalaya
+        college: Academy Of technology
+        highest_degree: B.tech
+      publications:
+        - title: Three mistakes of my life
+          name: Drama Book
+          author: Chetan Bhagat
+        - title: Zero To Hero
+          name: Motivation Book
+          author: Ben Justin
+#logging:
+#    level:
+#        org:
+#            springframework:
+#                boot:
+#                    autoconfigure:
+#                        logging: DEBUG
+

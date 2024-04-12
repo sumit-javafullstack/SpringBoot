@@ -1,0 +1,7 @@
+Customer.java -> Entity class for Lombok
+EmployeeControllerClass -> Jackson dependency
+Employee.java -> show different handful jackson annotation
+AppProperties.java -> shows about how we can read/mapped properties values using @ConfigurationProperties
+application.yml -> It has properties value set
+
+

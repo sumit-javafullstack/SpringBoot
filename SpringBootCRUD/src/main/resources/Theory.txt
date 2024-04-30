@@ -1,0 +1,166 @@
+************************************************************************************************************
+When we have column name in camelcase like empName,empId etc then jpa will convert this column name to emp_name,
+emp_id etc. So to avoid this we use below property:
+
+spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+*****************************************************************************************************************
+@GeneratedValue(strategy = GenerationType.IDENTITY) vs without @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+criteria :
+    Table should exist with primary key with auto_increment property.
+explanation:
+        Without @GeneratedValue(strategy = GenerationType.IDENTITY)
+            1) If we hit api multiple time with out providing empId:"" then It will update and increment empId
+               column in the table in the backend but in response it will give default value which is 0.
+               request :
+                {
+                    "empName":"Ramesh Mandal",
+                    "empSalary": "10000",
+                    "empDob": "2024-04-02",
+                    "empStatus": true
+                }
+                Response:
+                {
+                    "empId": 0,
+                    "empName": "Ramesh Mandal",
+                    "empSalary": 10000.0,
+                    "empDob": "2024-04-02",
+                    "empStatus": true
+                }
+                But If we provide @GeneratedValue(strategy = GenerationType.IDENTITY) the response would be
+                {
+                    "empId": 103,//NOTE:- It will take latest value and update by one and send it to response body
+                    "empName": "Ramesh Mandal",
+                    "empSalary": 10000.0,
+                    "empDob": "2024-04-02",
+                    "empStatus": true
+                }
+            2) Without @GeneratedValue(strategy = GenerationType.IDENTITY)
+               If we manually give empId in the request, the same value will get inserted in the table and when
+               we hit next time with same request body without changing id, it won't update/increment in the id but it
+               can update other column. in short it won't increment automatically for next request.
+               e.g:
+               request:
+               {
+                   "empId": 70,
+                   "empName":"Amit Mandal",
+                   "empSalary": "10000",
+                   "empDob": "2024-04-02",
+                   "empStatus": true
+               }
+               Response:
+               {
+                   "empId": 70,
+                   "empName": "Amit Mandal",
+                   "empSalary": 10000.0,
+                   "empDob": "2024-04-02",
+                   "empStatus": true
+               }
+               when we hit with same id again, it won't increment/update the id in the table.
+               But,
+               When we use @GeneratedValue(strategy = GenerationType.IDENTITY) and insert empId manually then
+               It won't take the inserted empId rather it will take previous value of empId from table and will
+               increment by one.
+               request:
+                   {
+                       "empId": 40,
+                       "empName":"DZ Mandal",
+                       "empSalary": "10000",
+                       "empDob": "2024-04-02",
+                       "empStatus": true
+                   }
+               Response:
+                   {
+                       "empId": 112,//previous value was 111
+                       "empName": "DZ Mandal",
+                       "empSalary": 10000.0,
+                       "empDob": "2024-04-02",
+                       "empStatus": true
+                   }
+
+*****************************************************************************************************************
+
+The below properties is for display sql query being executed.
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+*****************************************************************************************************************
+
+#If we write below property ddl = true that means table will get created if table doesn't exit.
+spring.jpa.generate-ddl=true
+spring.jpa.hibernate.ddl-auto=create
+
+*****************************************************************************************************************
+Configured Two Database Successfully.
+Configuration File Name:
+1) DataSource1Config
+2) DataSource2Config
+Explanation:
+method 1: getStudDataSource() -> to get first datasource details like url, pass etc
+method 2: entityManagerFactory1() -> to mentioned respective  entity classes packages name
+method 3: transactionManager1() -> to assign transaction manager to datasource1
+
+Note:
+@EnableJpaRepositories(
+    basePackages = {"com.springboot.crud.features.SpringBootCRUD.repository.employee"},
+    entityManagerFactoryRef = "entityManagerFactory1",
+    transactionManagerRef = "transactionManager1")
+Here ,
+    basePackages is the location for respective repository classes.
+
+*****************************************************************************************************************
+Session caching using SpringBoot HazelCast:
+
+Successfully integrated with hazelcast session caching.
+Look for:
+1) pom.xml for dependency
+2) HazelcastUtil.java
+3) HazelcastConfig.java
+4) getEmployee method inside EmployeeServiceImpl.
+
+NOTE: to integrate with kubernetes, please search for
+cntrl+shft+f -> kubernetes hazelcast and look for commented line code.
+
+*****************************************************************************************************************
+Spring validator to validate input at class level i.e input level:
+
+
+*****************************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -33,7 +33,7 @@ public class HazelcastUtil {
 
         if(employeeMap != null){
             employeeList = employeeMap.get(key);
-            log.info("Retrieving {} cache value for key {}",employeeList,key);
+          //  log.info("Retrieving {} cache value for key {}",employeeList,key);
         }
         if(employeeList==null){
             employeeList = new ArrayList<>();
@@ -43,7 +43,7 @@ public class HazelcastUtil {
 
     public final synchronized  void storeEmployeeDataInCache(String key,List<Employee> employeeList){
         IMap<String, List<Employee>> employeeMap = instance.getMap(employeeCacheMap);
-        log.info("update {} cache value for key {}",employeeList,key);
+        //log.info("update {} cache value for key {}",employeeList,key);
         employeeMap.set(key,employeeList);
     }
 

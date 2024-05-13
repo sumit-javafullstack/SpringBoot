@@ -1,0 +1,47 @@
+
+*****************************************************************************************************************
+Spring validator to validate input at class level i.e input level:
+
+This validation gets performed at input level which means when the values are getting set.
+
+1) Look at Employee.java model class fro annotation
+2) Look at CrudExceptionalHandler which catch MethodArgumentNotValidException
+    which gets thrown only when there is any violation in data constraint used in the model class.
+    If we have more than 1 violation we are storing in map and then returning.
+
+*****************************************************************************************************************
+Global Exception Handler:
+
+Global exception handler means we will be handling all the exception in one class.
+
+1) Look at CrudExceptionalHandler , We are catching EmployeeException which is thrown from service class
+   for exception occur. While throwing exception we are mentioning error message and status code with
+   respect to exception and later it gets handle in same POJO class.
+
+2) Exception are directly thrown from Service class only, There is no need of populating exception from service
+    class to controller class.
+
+*************************************************************************************************************
+Successfully configured RestTemplate:
+
+In RestTemplateConfig.java we have configured restTemplate bean for monolithic application.
+
+this can be improved by Async call.
+
+*************************************************************************************************************
+Pagination:
+
+1) Select All using pagination:
+
+Look at getEmployeePageable method inside EmployeeController where we have configured to fetch all record using pagination.
+We have initially set pageNum "0" and then increasing pageNum only if entityPage.hasNext().
+We set the page size 10000 which means each page will have 10000.
+It can be improved using async call.
+
+
+3) Searching using pagination:
+
+Look at performanceComparision method inside EmployeeController where we
+need page number and page size in the input.
+
+*************************************************************************************************************

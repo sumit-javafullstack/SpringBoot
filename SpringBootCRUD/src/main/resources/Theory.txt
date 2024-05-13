@@ -109,6 +109,12 @@ Note:
 Here ,
     basePackages is the location for respective repository classes.
 
+Now we just have call Repository interface, spring will automatically configure datasource with the
+details configured.
+e.g:
+@Autowired EmployeeRepository employee;
+employee.findAll()
+
 *****************************************************************************************************************
 Session caching using SpringBoot HazelCast:
 
@@ -121,12 +127,6 @@ Look for:
 
 NOTE: to integrate with kubernetes, please search for
 cntrl+shft+f -> kubernetes hazelcast and look for commented line code.
-
-*****************************************************************************************************************
-Spring validator to validate input at class level i.e input level:
-
-
-*****************************************************************************************************************
 
 
 

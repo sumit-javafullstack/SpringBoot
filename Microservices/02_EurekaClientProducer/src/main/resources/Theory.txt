@@ -1,0 +1,21 @@
+*****************************************************************************************************************
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8090/eureka/
+
+The above properties establish the connection with eureka server which is running on 8090 port.
+
+*****************************************************************************************************************
+spring-cloud-starter-netflix-eureka-client:
+    @EnableDiscoveryClient :
+    tells spring this service is client which is going to host on any eureka server.
+    The service is able to determine the host server from application.yaml properties file. i.e above
+    properties file.
+
+*****************************************************************************************************************
+
+
+
+
+

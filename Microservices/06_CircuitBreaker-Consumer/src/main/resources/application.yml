@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: 06_CircuitBreaker-Consumer
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      jasKeyCompute:
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 6
+        waitDurationInOpenState: 50s
+        permittedNumberOfCallsInHalfOpenState: 4
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+server:
+  port: 7778
+
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+    #  shutdown:
+    #    enables: true
+
+  endpoints:
+    web:
+    exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+
+
+

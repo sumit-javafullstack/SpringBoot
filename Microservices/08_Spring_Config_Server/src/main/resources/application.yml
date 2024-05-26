@@ -1,0 +1,13 @@
+server:
+  port: 6666
+
+spring:
+  application:
+    name: CONFIG-SERVER
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/sumit-javafullstack/spring-cloud-config-server.git
+          clone-on-start: true

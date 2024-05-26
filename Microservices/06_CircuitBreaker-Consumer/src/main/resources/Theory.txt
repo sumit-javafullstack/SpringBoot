@@ -1,0 +1,54 @@
+
+Refer to image available in the resouce folder for circuit breaker diagram.
+************************************************************************************************************
+Function of Resilience4jStateNotifier:
+
+This configuration helps to generate state changes circuit breaker logs
+e.g:
+2024-05-18T15:52:54.050299200+05:30[Asia/Calcutta]: CircuitBreaker 'jasKeyCompute' changed state
+from CLOSED to OPEN
+
+2024-05-18T15:53:44.065087400+05:30[Asia/Calcutta]: CircuitBreaker 'jasKeyCompute' changed state
+from OPEN to HALF_OPEN
+
+2024-05-18T15:55:00.588571+05:30[Asia/Calcutta]: CircuitBreaker 'jasKeyCompute' changed state
+from HALF_OPEN to CLOSED
+************************************************************************************************************
+automaticTransitionFromOpenToHalfOpenEnabled: true
+failureRateThreshold: 50
+minimumNumberOfCalls: 6
+waitDurationInOpenState: 50s
+permittedNumberOfCallsInHalfOpenState: 4
+slidingWindowType: COUNT_BASED
+slidingWindowSize: 10
+
+1) automaticTransitionFromOpenToHalfOpenEnabled: true
+    - This property is used to transition OPEN HALF to OPEN automatically
+      If failureRateThreshold: 50%.
+
+2) failureRateThreshold: 50
+   minimumNumberOfCalls: 6
+    - For last 6 request, if 50% fails i.e 3 request fails from last 6 request, The circuit will
+      automatically convert into OPEN state with the help of properties#1
+
+3) waitDurationInOpenState: 50s
+   If the circuit is in open state and and If circuit is idle for 50 sec( idle means
+   there is no new request for next 50 sec) then circuit will automatically convert to OPEN to HALF OPEN state.
+
+4) permittedNumberOfCallsInHalfOpenState: 4
+   When the circuit is in HALF OPEN state It will permit only 4 call and after 4 calls It will be either
+   1) OPEN state or 2) CLOSE state
+
+   The above decision depends upon below property :
+   failureRateThreshold: 50
+   if out of 4 call in HALF OPEN state, IF 50% fails(at least 2 fails) It will be again OPEN state
+   and If more than 50% passes ( at least 3 passes) , circuit will be in CLOSE state.
+
+************************************************************************************************************
+
+
+
+************************************************************************************************************
+
+************************************************************************************************************
+************************************************************************************************************

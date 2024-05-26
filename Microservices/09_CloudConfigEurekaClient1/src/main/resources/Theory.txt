@@ -1,0 +1,17 @@
+***************************************************************************************************
+spring-cloud-starter-config ->
+This services is acting like client config and will fetch properties
+details from configserver:http://localhost:6666.
+
+
+Note: commented common/properties
+
+**************************************************************************************************
+
+
+
+
+
+
+
+

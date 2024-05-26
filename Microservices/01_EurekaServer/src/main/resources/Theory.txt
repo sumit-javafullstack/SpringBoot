@@ -1,0 +1,17 @@
+***************************************************************************************************************
+spring-cloud-starter-netflix-eureka-server :
+    This dependency is responsible to create Server in Service Discovery.
+    We mention port number and server url( refer to application.yaml ) file. If any other client/services hosted
+    on this server, we will come to know about their status like weather client is up/down with port number.
+For ex:
+    02_Eureka_Client_producer and 03_Eureka_Client_consumer hosted on 01_EurekaServer server.
+
+****************************************************************************************************************
+@EnableEurekaServer :
+    This annotation in the main class tells Spring this application will act as server.
+****************************************************************************************************************
+Special Note:
+<spring-cloud.version>2021.0.8</spring-cloud.version> and <version>2.7.3</version>
+Both the above version i.e cloud version and spring boot version should be in sync.
+
+

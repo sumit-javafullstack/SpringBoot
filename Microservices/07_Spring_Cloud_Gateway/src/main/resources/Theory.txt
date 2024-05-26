@@ -1,0 +1,31 @@
+**************************************************************************************************************
+We use Gateway service in microservices as front layer request. We will have multiple services like
+Product/Catalog/Customer/Cart/Login/Order etc and these will have it's own url and api's.
+
+It will be very difficult to know all the end points along with port number.
+We use only one gateway service and from this service all the request will be diverted.
+
+**************************************************************************************************************
+For example:
+
+Gateway service url is :
+    http://localhots:1111
+we are using
+    1) Path=/producer/**
+    2) Path=/consumer/**
+the above predicates configuration means
+if we have request http://localhots:1111/producer/** go to http://localhost:8091/producer/
+if we have request http://localhots:1111/consumer/** go to http://localhost:8092/consumer/
+
+**************************************************************************************************************
+Dependencies:
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-gateway</artifactId>
+</dependency>
+
+<spring-cloud.version>2021.0.8</spring-cloud.version>
+**************************************************************************************************************
+
+

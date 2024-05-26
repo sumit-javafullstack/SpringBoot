@@ -1,0 +1,40 @@
+*****************************************************************************************************************
+This project Demonstrate about RestTemplate features and configuration:
+
+RestTemplateConfig :
+    We have configures ResTemplate read-timeout and connect-timeout. We do have other features
+    like eviction-timeout etc, we can look at those in google.
+******************************************************************************************************************
+CustomResponseErrorHandler:
+    Explain how the error response should be handle in RestTemplate. With this handler,
+    we will come to know what is the exact error/code/message(401,403,500 etc) calling service has thrown.
+
+CrudExceptionalHandler:
+    We have also use global exception handler which catch EmployeeException and send the respective message
+    in the api response.
+
+******************************************************************************************************************
+Special Note: We are also sending calling service name in EmployeeClient like below:
+
+restTemplate.setErrorHandler(new CustomResponseErrorHandler("Service Name: circuit-breaker-producer: "));
+
+The advantage of this would be if we are calling multiple services using same restTemplate bean,
+in the response of the API we will see which service was failed with what error.
+ex:
+{
+    "message": "Service Name: circuit-breaker-producer:  Internal server error",
+    "time": "2024-05-15T16:42:44.5457948",
+    "errorCode": 500
+}
+
+******************************************************************************************************************
+
+
+
+
+
+
+
+
+
+

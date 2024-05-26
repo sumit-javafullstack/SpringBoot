@@ -1,0 +1,40 @@
+Problem Statement:
+    If we have multiple instance of producer running in different port like below:
+       DESKTOP-C321NIN:cst-employee-producer:8889 ,
+       DESKTOP-C321NIN:cst-employee-producer:8091 ,
+       DESKTOP-C321NIN:cst-employee-producer:8888
+    and multiple consumer tries to read this client, to balance the node across all the instances we use
+    Load Balancer.
+
+Load Balancer:
+    This follow round robbin algorithm when multiple request comes in for multiple instances.
+    e.g: A->B->C->A->B->.......
+This helps us to balance the load across all the instance of producer.
+
+For example, look at the below log generated with and without load balancer:
+
+ >>> From Client---Without Load Balancer -> producer port id : 8888
+ >>> From Client---Without Load Balancer -> producer port id : 8888
+ >>> From Client---Without Load Balancer -> producer port id : 8888
+ >>> From Client---Without Load Balancer -> producer port id : 8888
+ *****************************************************************
+ >>> From Client--- Load Balancer----> producer port id : 8889
+ >>> From Client--- Load Balancer----> producer port id : 8889
+ >>> From Client--- Load Balancer----> producer port id : 8888
+ >>> From Client--- Load Balancer----> producer port id : 8091
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+************************************************************************************************************
+@CircuitBreaker(name = "jasKeyCompute", fallbackMethod = "subscribeFallBackMethod")
+
+-> When any exception occur it will look for fallback method which has implementation of exception
+   occurred from top to bottom fallback method implementation.
+
+-> Once the exception gets caught, We are throwing custom exception with global handler and returning the
+    ResponseEntity from there as response.
+-> With Circuit Breaker, there is no need of implementing DefaultResponseHandler ( refer to
+    RestTemplate-Microservices)
+
+************************************************************************************************************
+Why we add aop dependency with circuit breaker:
+    -> The Reason we add aop dependency is when fallback method call executes, It search for
+    the implementation method which handle respective exception same like in global exception handler.
+
+************************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+

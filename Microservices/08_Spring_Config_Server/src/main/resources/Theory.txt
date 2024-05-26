@@ -1,0 +1,26 @@
+*****************************************************************************************************************
+We use Spring Cloud config server when we have to externalize repeated/similar configuration across
+microservices.
+For example, Here
+09_CloudConfigEurekaClient1 and 10_CloudConfigEurekaClient2 both are connecting to service registry
+01_EurekaServer and to connect both uses same configuration.
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8090/eureka/
+
+We can use other properties and those properties can be acces with @Value/@propertySource
+*****************************************************************************************************************
+Dependencies:
+1) spring-cloud-starter-netflix-eureka-client : To act like client to the github
+2) spring-cloud-config-server : To act like config server
+
+*****************************************************************************************************************
+uri: https://github.com/sumit-javafullstack/spring-cloud-config-server.git
+clone-on-start: true
+
+Here, We are storing properties in the above github and this properties will get loaded/cloned when
+application will starts.
+
+*****************************************************************************************************************

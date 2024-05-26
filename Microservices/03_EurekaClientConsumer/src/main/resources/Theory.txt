@@ -1,0 +1,25 @@
+*******************************************************************************************************************
+With the help of ConsumerClient.java, we are calling cst-employee-producer which
+has been deploy in same server. Since both producer and consumer deployed in same server, we can access
+their respective url using DiscoveryClient.
+
+*******************************************************************************************************************
+
+Swagger :
+http://localhost:8092/consumer/employees
+http://localhost:8092/consumer/101
+*******************************************************************************************************************
+
+
+
+*******************************************************************************************************************
+By default, Jackson will throw the error "Java 8 date/time type java.time.LocalDate not supported by
+ default" if the Java object contains Java 8 date/time APIs.
+-> We must manually add the dependency jackson-datatype-jsr310
+   and register the JavaTimeModule() to make Jackson support Java 8 date time APIs.
+
+        ObjectMapper om = new ObjectMapper();
+
+        // support Java 8 date time apis
+        om.registerModule(new JavaTimeModule());
+

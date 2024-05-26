@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: 07_Spring_Cloud_Gateway
+  cloud:
+    gateway:
+      routes:
+        - id: cst-employee-producer
+          uri: http://localhost:8091/producer/
+          predicates:
+            - Path=/producer/**
+        - id: cst-employee-producer
+          uri: http://localhost:8092/consumer/
+          predicates:
+            - Path=/consumer/**
+server:
+  port: 1111
+
+
+
+

@@ -1,0 +1,14 @@
+
+#eureka:
+#    client:
+#        serviceUrl:
+#            defaultZone: http://localhost:8090/eureka/
+server:
+    port: 6668
+spring:
+    application:
+        name: cst-employee-consumer
+    config:
+      import: configserver:http://localhost:6666
+
+

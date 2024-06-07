@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/rest-template-microservice")
@@ -48,8 +49,14 @@ public class RestTemplateController {
 
 
   @GetMapping("/without-async")
-  public ResponseEntity<?> getJsonwithoutAsync() throws JsonProcessingException {
+  public ResponseEntity<?> getJsonwithoutAsync() throws JsonProcessingException, ExecutionException, InterruptedException {
     Collection<List<Album>> implWithoutAsync = asyncClient.getAlbumWithoutAsync();
     return new ResponseEntity<>(implWithoutAsync,HttpStatus.OK);
+  }
+
+  @GetMapping("/async")
+  public ResponseEntity<?> getJsonAsync() throws JsonProcessingException, ExecutionException, InterruptedException {
+    List<Album> implAsync = asyncClient.getAlbumAsync();
+    return new ResponseEntity<>(implAsync,HttpStatus.OK);
   }
 }

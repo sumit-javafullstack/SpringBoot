@@ -1,0 +1,96 @@
+*************************************************************************************************
+NOTE: we need to add 2 dependency when connecting with database.
+        1) Database dependency(mysql/odbc.oracle/h2database)
+        2) JPA dependency to get in build method.
+
+*************************************************************************************************
+Important configuration:
+    H2 store data in in memory of the system.
+    we need to provide all the details like we do for sql and oracle.
+        1) url
+        2) username
+        3) password
+        4) driver-class-name
+    there are other configuration which we need to do to show the result in console, refer to
+    application.yaml file.
+
+*************************************************************************************************
+Cascade Types in JPA
+ >> Cascade types in JPA define how operations performed on a parent entity propagate to associated child entities.
+    When you perform certain operations on an entity, JPA can cascade those operations to its related entities.
+    This helps to manage the entity relationships more easily.
+        Cascade Types
+        ALL: Applies all cascading operations.
+        PERSIST: When the parent entity is persisted (saved), the child entities are also persisted.
+        MERGE: When the parent entity is merged, the child entities are also merged.
+        REMOVE: When the parent entity is removed, the child entities are also removed.
+        REFRESH: When the parent entity is refreshed, the child entities are also refreshed.
+        DETACH: When the parent entity is detached from the persistence context, the child entities are also detached.
+
+***********************************************************************************************
+Lazy vs. Eager Fetching
+>>  In JPA, fetching strategies define how and when related entities are loaded from the database. The two main
+    fetching strategies are:
+
+        LAZY: The related entity or collection is loaded only when it is accessed for the first time. This is the default
+        behavior for collections.
+
+        EAGER: The related entity or collection is loaded immediately along with the parent entity. This is the default
+        behavior for single-valued relationships.
+
+      >>>The books collection in the Author entity is lazily loaded, meaning the Book entities are only fetched when
+         the books collection is accessed. Which means when we access Author, Book will not get fetched.
+
+      >>>The author field in the Book entity is eagerly loaded, meaning the Author entity is fetched immediately when
+         the Book entity is fetched. Which means when we access Book, Author will get fetched.
+***********************************************************************************************
+Swagger input:
+    NOTE>>> Here though we are calling
+        http://localhost:8888/author/saveAuthor
+        but since we mentioned cascade type as ALL, the booklist data also gets inserted into Book table along with author
+        even without calling saveBook end point.
+        This is the advantage of cascade.
+    Author:
+        {
+            "id":"100",
+            "authorName":"Monika",
+            "age":"35",
+            "authorDob":"1995-08-02",
+            "numOfPublications":"15",
+            "bookList":[
+                {
+                "bookName":"JAVA",
+                "bookPrice":"350.00",
+                "publishDate":"1995-08-02"
+                }
+            ]
+
+
+        }
+
+    Book:
+        {
+
+            "bookName":"Theory Of Giant",
+            "bookPrice":"350.00",
+            "publishDate":"1995-08-02",
+            "author": {
+            "id":"1",
+            "authorName":"Monika",
+            "age":"35",
+            "authorDob":"1995-08-02",
+            "numOfPublications":"15"
+            }
+        }
+***********************************************************************************************
+CASCADE.TYPE=ALL:
+    refer to testCasCade method inside AuthorBookServiceImpl:
+    // This will also save books(child table) because of CascadeType.ALL
+    return  authorRepository.save(author);
+
+***********************************************************************************************
+
+***********************************************************************************************
+
+***********************************************************************************************
+

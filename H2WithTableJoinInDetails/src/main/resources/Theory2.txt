@@ -1,0 +1,33 @@
+*********************************ROLLBACK and Transactional**************************************************************
+Rollback in JPA
+    To perform a rollback in JPA, you need to manage transactions properly. If an exception occurs during a transaction,
+    you can roll back the transaction to undo any changes made. When using Spring Data JPA and JpaRepository,
+    transaction management is typically handled using Spring's @Transactional annotation.
+***********************************************************************************************
+Example with @Transactional
+    The saveAuthorWithBooks() method is marked with @Transactional, meaning it will run within a transaction.
+    If an exception is thrown, the transaction will be automatically rolled back.
+***********************************************************************************************
+
+Internal Mechanism of Commit and Rollback
+    Transaction Start:
+        When a method annotated with @Transactional is called, Spring starts a new transaction if one does not already exist.
+        The transaction is bound to the current thread.
+
+    Entity Operations:
+        All operations on the entities (like save, delete, etc.) are performed within the context of this transaction.
+        These operations are not immediately persisted to the database but are held in the persistence context (managed
+        by the EntityManager).
+
+    Commit:
+        When the method completes successfully (without exceptions), Spring commits the transaction.
+        During the commit, all changes in the persistence context are flushed to the database and made permanent.
+
+    Rollback:
+        If an exception occurs within the @Transactional method, Spring catches it, and the transaction is marked for rollback.
+        All changes in the persistence context are discarded, and no changes are persisted to the database.
+***********************************************************************************************
+
+***********************************************************************************************
+
+***********************************************************************************************
